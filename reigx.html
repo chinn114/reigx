@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reigx パフューム</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .product-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="color: #BDB76B;">Reigx パフューム</h1>
+    <nav>
+      <a href="#" style="color: #BDB76B;">ホーム</a>
+      <a href="products.html" style="color: #BDB76B;">商品一覧</a>
+      <a href="aboutus.html" style="color: #BDB76B;">私たちについて</a>
+      <a href="contact.html" style="color: #BDB76B;">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2 style="color: #BDB76B;">あなただけの香りを、ここで。</h2>
+      <p style="color: #BDB76B;">東洋の香り | カスタマイズ可能 | 世界に一つだけ</p>
+    </section>
+
+    <section class="products" id="products">
+      <h2 style="color: #BDB76B;">人気商品</h2>
+      <button id="toggleBtn">表示を切り替え</button>
+      <div class="product-card">
+        <img src="香水1.jpg" alt="パフューム1" />
+        <h3 style="color: #BDB76B;">朝霧（あさぎり）</h3>
+        <p style="color: #BDB76B;">ふんわりとしたフローラル系。日常使いにおすすめ。</p>
+        <button>詳しく見る</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p style="color: #BDB76B;">&copy; 2025 Reigx.（はるた、チン、カウン） 全著作権所有</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const productCard = document.querySelector('.product-card');
+
+    toggleBtn.addEventListener('click', () => {
+      productCard.classList.toggle('expanded');
+    });
+
+    // 淡入显示动画
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    observer.observe(productCard);
+  </script>
+</body>
+</html>
